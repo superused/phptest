@@ -23,3 +23,27 @@ RUN composer global require "laravel/installer"
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install npm@latest -g
+RUN { \
+    echo 'Alias /lara8book/ "/var/www/html/lara8book/public/"'; \
+    echo '<Directory "/var/www/html/lara8book/">'; \
+    echo '    Options Indexes FollowSymLinks MultiViews'; \
+    echo '    AllowOverride all'; \
+    echo '    Order allow,deny'; \
+    echo '    Allow from All'; \
+    echo '</Directory>'; \
+    echo 'Alias /lara8order/ "/var/www/html/lara8order/public/"'; \
+    echo '<Directory "/var/www/html/lara8order/">'; \
+    echo '    Options Indexes FollowSymLinks MultiViews'; \
+    echo '    AllowOverride all'; \
+    echo '    Order allow,deny'; \
+    echo '    Allow from All'; \
+    echo '</Directory>'; \
+    echo 'Alias /lara8enkai/ "/var/www/html/lara8enkai/public/"'; \
+    echo '<Directory "/var/www/html/lara8enkai/">'; \
+    echo '    Options Indexes FollowSymLinks MultiViews'; \
+    echo '    AllowOverride all'; \
+    echo '    Order allow,deny'; \
+    echo '    Allow from All'; \
+    echo '</Directory>'; \
+} >> /etc/apache2/apache2.conf
+

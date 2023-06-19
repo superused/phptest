@@ -1,4 +1,4 @@
-FROM php:8.0-apache
+FROM php:8.1-apache
 RUN apt-get update
 RUN apt-get install -y vim wget zlib1g-dev libzip-dev gnupg unzip
 RUN docker-php-ext-install zip pdo_mysql
@@ -22,7 +22,7 @@ RUN composer global require "laravel/installer"
 # node.js install
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
-RUN npm install npm@latest -g
+RUN apt install -y npm
 RUN { \
     echo 'Alias /lara8book/ "/var/www/html/lara8book/public/"'; \
     echo '<Directory "/var/www/html/lara8book/">'; \

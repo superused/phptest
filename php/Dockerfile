@@ -1,7 +1,7 @@
-FROM php:8.1-apache
-RUN apt update
-RUN apt install -y vim wget zlib1g-dev libgmp-dev libzip-dev gnupg unzip git ssh
-RUN docker-php-ext-install pdo zip pdo_mysql bcmath gmp
+FROM php:8.0-apache
+RUN apt-get update
+RUN apt-get install -y vim wget zlib1g-dev libzip-dev gnupg unzip
+RUN docker-php-ext-install zip pdo_mysql
 RUN a2enmod rewrite
 COPY mailhog.ini /usr/local/etc/php/conf.d/mailhog.ini
 RUN curl -sSL https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64 -o mhsendmail \
@@ -21,7 +21,7 @@ RUN composer global require "laravel/installer"
 
 # node.js install
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt install -y nodejs
+RUN apt-get install -y nodejs
 RUN npm install npm@latest -g
 RUN { \
     echo 'Alias /lara8book/ "/var/www/html/lara8book/public/"'; \
